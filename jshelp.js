@@ -30,9 +30,10 @@ module.exports = {
                         });
                     })
                     .then(function (res) {
-                        const node_module = res[Object.keys(res)[0]];
-                        return format('%s: %s - %s -> https://npmjs.org/package/%s',
-                            command.nickname, node_module.name, node_module.description, node_module.name);
+                        const version = Object.keys(res)[0];
+                        const node_module = res[version];
+                        return format('%s: %s (%s) - %s -> https://npmjs.org/package/%s',
+                            command.nickname, node_module.name, version, node_module.description, node_module.name);
                         return (inspect(res));
                     })
                     .catch(function (err) {

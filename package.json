@@ -1,6 +1,6 @@
 {
   "name": "tennu-jshelp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "JS Help Plugin for Tennu IRC Bot Framework",
   "main": "jshelp.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Tennu/tennu-jshelp",
   "dependencies": {
-    "bluebird": "~0.11.6-0",
-    "npm": "~1.3.23"
+    "bluebird": "~0.11.x",
+    "npm": "~1.3.x"
   }
 }
