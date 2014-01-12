@@ -22,11 +22,15 @@ module.exports = {
 
                     return ready
                     .then(function () {
-                        return npminfo(command.args[0])
+                        return new Promise(function (resolve, reject) {
+                            npm.commands.info([command.args[0], 'name', 'description'], true, function (err, res) {
+                                if (err) reject(err);
+                                else resolve(res);
+                            });
+                        });
                     })
                     .then(function (res) {
-                        const versions = res[0];
-                        const node_module = versions[Object.keys(versions)[0]];
+                        const node_module = res[Object.keys(res)[0]];
                         return format('%s: %s - %s -> https://npmjs.org/package/%s',
                             command.nickname, node_module.name, node_module.description, node_module.name);
                         return (inspect(res));

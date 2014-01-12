@@ -17,8 +17,3 @@ None
 ## Hooks
 
 None
-
-## Bugs
-
-The `npm` command will echo to stdout. If you know a solution to this,
-https://stackoverflow.com/questions/21070167/call-npm-infomodulename-without-printing-result-to-stdout
