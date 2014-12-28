@@ -4,12 +4,13 @@ const npminfo = Promise.promisify(npm.info, npm);
 const format = require('util').format;
 const inspect = require('util').inspect;
 const request = require('request');
+const unescape = require('lodash.unescape');
 
 module.exports = {
     init: function (client, imports) {
-        const ready = Promise.promisify(npm.load, npm)({});
+        const npm_ready = Promise.promisify(npm.load, npm)({});
 
-        ready.catch(function (err) {
+        npm_ready.catch(function (err) {
             client.error('Plugin-JSHelp', err.name);
             client.error('Plugin-JSHelp', err.stack);
         });
@@ -21,7 +22,7 @@ module.exports = {
                         return;
                     }
 
-                    return ready
+                    return npm_ready
                     .then(function () {
                         return new Promise(function (resolve, reject) {
                             npm.commands.info([command.args[0], 'name', 'description'], true, function (err, res) {
@@ -66,7 +67,15 @@ module.exports = {
                         });
                     })
                     .then(function (res) {
-                        return format('%s - %s', res.url, res.titleNoFormatting);
+                        // Turn &gt; into >, ect.
+                        // Strip the " | MDN" from end of title.
+                        return {
+                            url: res.url, 
+                            title: unescape(res.titleNoFormatting.slice(0, -6))
+                        };
+                    })
+                    .then(function (res) {
+                        return format("%s - %s", res.url, res.title)
                     })
                     .catch(function (err) {
                         client.error('Plugin-JSHelp', err.name);
