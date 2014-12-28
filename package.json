@@ -1,6 +1,6 @@
 {
   "name": "tennu-jshelp",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "JS Help Plugin for Tennu IRC Bot Framework",
   "main": "jshelp.js",
   "scripts": {
