@@ -86,12 +86,12 @@ module.exports = {
 
             help: {
                 npm: [
-                    '!npm <module>',
-                    'Look up the description and link to the specified module.'
+                    '{{!}}npm <package>',
+                    'Look up the description and link to the specified package.'
                 ],
 
                 mdn: [
-                    '!mdn <query>',
+                    '{{!}}mdn <query>',
                     'Search the Mozilla Developer Network'
                 ]
             },
