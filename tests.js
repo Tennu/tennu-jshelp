@@ -1,13 +1,13 @@
-//const sinon = require('sinon');
-const assert = require('better-assert');
-// const equal = require('deep-eql');
-const inspect = require('util').inspect;
-const format = require('util').format;
+//const sinon = require("sinon");
+const assert = require("better-assert");
+// const equal = require("deep-eql");
+const inspect = require("util").inspect;
+const format = require("util").format;
 
 const debug = false;
 const logfn = debug ? console.log.bind(console) : function () {};
 
-const jshelp_plugin = require('./jshelp');
+const jshelp_plugin = require("./jshelp");
 const client = {
     notice: logfn,
     error: function err (pluginName, errorState) {
@@ -22,13 +22,25 @@ const client = {
     }
 };
 
-describe("MDN -", function () {
-    it("Escapes common HTML entities", function () {
+describe("!MDN", function () {
+    it.skip("escapes common HTML entities", function () {
         const jshelp = jshelp_plugin.init(client, {});
-        return jshelp.handlers["!mdn"]({args: ['HTML script']})
+        return jshelp.handlers["!mdn"]({args: ["HTML script tag"].split(" ")})
         .then(function (output) {
             logfn(format("'%s'", output));
             assert(output === "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script - <script> - HTML (HyperText Markup Language)")
+        });
+    });
+});
+
+
+describe("!npm", function () {
+    it("gives information on specified packages", function () {
+        const jshelp = jshelp_plugin.init(client, {});
+        return jshelp.handlers["!npm"]({args: ["r-result"], nickname: "Havvy"})
+        .then(function (output) {
+            logfn(output);
+            assert(output === "Havvy: r-result (1.1.1) - Rust's Result in JS -> https://npmjs.org/package/r-result");
         });
     });
 });
