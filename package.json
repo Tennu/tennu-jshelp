@@ -21,15 +21,15 @@
   },
   "homepage": "https://github.com/Tennu/tennu-jshelp",
   "dependencies": {
-    "bluebird": "^0.11.x",
+    "bluebird": "^3",
     "lodash.unescape": "^2.4.1",
     "mdn-search-api": "^1.0.0",
-    "node-fetch": "^1.5.3",
-    "npm": "^3",
+    "node-fetch": "^1",
+    "npm": "^5",
     "r-result": "^1.1.1"
   },
   "devDependencies": {
     "better-assert": "^1.0.2",
-    "mocha": "^2.1.0"
+    "mocha": "^3"
   }
 }

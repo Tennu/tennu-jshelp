@@ -4,7 +4,7 @@ const assert = require("better-assert");
 const inspect = require("util").inspect;
 const format = require("util").format;
 
-const debug = false;
+const debug = Boolean(false || process.env.VERBOSE);
 const logfn = debug ? console.log.bind(console) : function () {};
 
 const jshelp_plugin = require("./jshelp");
@@ -40,7 +40,7 @@ describe("!npm", function () {
         return jshelp.handlers["!npm"]({args: ["r-result"], nickname: "Havvy"})
         .then(function (output) {
             logfn(output);
-            assert(output === "Havvy: r-result (1.1.1) - Rust's Result in JS -> https://npmjs.org/package/r-result");
+            assert(output === "Havvy: r-result (1.5.1) - Rust's Result in JS -> https://npmjs.org/package/r-result");
         });
     });
 });
